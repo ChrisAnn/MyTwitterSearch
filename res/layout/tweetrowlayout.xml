@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+ <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                 android:layout_width="fill_parent"
+                 android:layout_height="fill_parent"
+                 android:stretchColumns="*">
+
+    <TableRow>
+     <ImageView android:id="@+id/icon" android:layout_height="65px"
+           android:src="@drawable/icon" android:layout_width="65px"
+           android:scaleType="fitStart"
+           android:layout_marginTop="10px"
+           >
+       </ImageView>
+
+       <TextView android:id="@+id/userText"
+           android:layout_marginLeft="10px"
+           android:layout_width="wrap_content"
+           android:layout_marginTop="10px"
+           android:layout_height="wrap_content" 
+            android:layout_weight="1"/>
+    </TableRow>
+
+    <TableRow>
+         <TextView android:id="@+id/userProfile"
+             android:layout_width="50px"
+             android:textStyle="bold"
+             android:layout_marginBottom="10px"
+             android:layout_height="wrap_content" 
+             android:layout_weight="1"/>
+    </TableRow>
+
+</TableLayout>
