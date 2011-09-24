@@ -26,6 +26,12 @@ local.properties
 # PDT-specific
 .buildpath
 
+# IntelliJ ignore--
+*.iml
+*.ipr
+*.iws
+.idea/
+
 #Android ignore--
 # built application files
 *.apk
