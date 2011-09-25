@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
@@ -16,6 +17,7 @@ public class SearchActivity extends Activity {
 	
 	private Button cmdSearch;
 	private Button cmdSave;
+    private Button cmdSavedSearches;
 	private EditText txtSearch;
 	
     /** Called when the activity is first created. */
@@ -26,6 +28,7 @@ public class SearchActivity extends Activity {
         
         cmdSearch = (Button)findViewById(R.id.cmdSearch);
         cmdSave = (Button)findViewById(R.id.cmdSave);
+        cmdSavedSearches = (Button)findViewById(R.id.cmdSavedSearches);
         txtSearch = (EditText)findViewById(R.id.txtSearch);
         
         cmdSave.setEnabled(false);
@@ -36,6 +39,18 @@ public class SearchActivity extends Activity {
         cmdSave.setOnClickListener(new Button.OnClickListener() {
            public void onClick(View v) {saveSearch();}
         });
+
+        cmdSavedSearches.setOnClickListener(new Button.OnClickListener() {
+            public void onClick(View v) {openSavedSearches();}
+        });
+
+        if (this.getIntent() != null && this.getIntent().getExtras() != null) {
+            String searchText = this.getIntent().getExtras().getString("searchText");
+            if (searchText != null) {
+                txtSearch.setText(searchText);
+                search();
+            }
+        }
     }
 
     private void saveSearch() {
@@ -67,5 +82,10 @@ public class SearchActivity extends Activity {
     	TwitterArrayAdapter adapter = new TwitterArrayAdapter(getApplicationContext(), R.layout.main, tweets);
     	ListView lv = (ListView)findViewById(R.id.lstViewTweet);
     	lv.setAdapter(adapter);
+    }
+
+    private void openSavedSearches() {
+        Intent intent = new Intent(SearchActivity.this, SearchListActivity.class);
+        startActivity(intent);
     }
 }
